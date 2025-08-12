@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reservation Saved</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 10px;">
+
+  <h2 style="margin-bottom: 15px;">Reservation Created</h2>
+
+  <p style="margin: 6px 0;">ID: <span th:text="${reservation.id}"></span></p>
+  <p style="margin: 6px 0;">Flight: <span th:text="${reservation.flightNumber}"></span></p>
+  <p style="margin: 6px 0;">
+    From <span th:text="${reservation.origin}"></span> to <span th:text="${reservation.destination}"></span>
+    on <span th:text="${reservation.travelDate}"></span>
+  </p>
+  <p style="margin: 6px 0;">
+    Customer: <span th:text="${reservation.customer.firstName}"></span>
+    <span th:text="${reservation.customer.lastName}"></span>
+    (<span th:text="${reservation.customer.email}"></span>)
+  </p>
+  <p style="margin: 6px 0;">
+    Payment: <span th:text="${reservation.payment.amount}"></span>
+    <span th:text="${reservation.payment.currency}"></span>
+    via <span th:text="${reservation.payment.method}"></span>
+  </p>
+
+  <p style="margin-top: 20px;">
+    <a th:href="@{/}" 
+       style="color: #007bff; text-decoration: none; font-weight: bold;"
+       onmouseover="this.style.textDecoration='underline'" 
+       onmouseout="this.style.textDecoration='none'">
+       Create another
+    </a>
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dhruv – Reservation</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+
+<h2 style="margin-bottom: 10px;">Reservation Form</h2>
+
+<form th:action="@{/reserve}" th:object="${reservation}" method="post" style="max-width: 400px;">
+
+  <fieldset style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+    <legend style="font-weight: bold; padding: 0 5px;">Flight</legend>
+    Flight #: <input th:field="*{flightNumber}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Origin: <input th:field="*{origin}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Destination: <input th:field="*{destination}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Travel Date (YYYY-MM-DD): <input th:field="*{travelDate}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Seats: <input th:field="*{seats}" type="number" min="1" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+  </fieldset>
+
+  <fieldset style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+    <legend style="font-weight: bold; padding: 0 5px;">Customer</legend>
+    First Name: <input th:field="*{customer.firstName}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Last Name: <input th:field="*{customer.lastName}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Email: <input th:field="*{customer.email}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Phone: <input th:field="*{customer.phone}" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+  </fieldset>
+
+  <fieldset style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+    <legend style="font-weight: bold; padding: 0 5px;">Payment</legend>
+    Method: <input th:field="*{payment.method}" placeholder="CARD/CASH/INTERAC" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Amount: <input th:field="*{payment.amount}" step="0.01" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+    Currency: <input th:field="*{payment.currency}" value="CAD" style="margin-bottom: 8px; width: 100%; box-sizing: border-box;" /><br/>
+  </fieldset>
+
+  <!-- Show validation errors -->
+  <div th:if="${#fields.hasErrors('*')}" style="color: red; margin-bottom: 15px;">
+    <p>Please correct the errors:</p>
+    <ul>
+      <li th:each="e : ${#fields.errors('*')}" th:text="${e}"></li>
+    </ul>
+  </div>
+
+  <button type="submit" style="padding: 8px 16px; font-size: 1em; cursor: pointer;">Submit Reservation</button>
+</form>
+
+</body>
+</html>
